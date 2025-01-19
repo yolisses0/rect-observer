@@ -1,13 +1,13 @@
 import { add } from "./add";
-import { MoveObserver } from "./MoveObserver";
-import type { MoveObserverCallback } from "./MoveObserverCallback";
-import { MoveObserverEntry } from "./MoveObserverEntry";
-import type { MoveObserverInit } from "./MoveObserverInit";
+import { RectObserver } from "./RectObserver";
+import type { RectObserverCallback } from "./RectObserverCallback";
+import { RectObserverEntry } from "./RectObserverEntry";
+import type { RectObserverInit } from "./RectObserverInit";
 
 export {
   add,
-  MoveObserver,
-  MoveObserverCallback,
-  MoveObserverEntry,
-  MoveObserverInit,
+  RectObserver,
+  RectObserverCallback,
+  RectObserverEntry,
+  RectObserverInit,
 };
