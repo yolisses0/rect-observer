@@ -1,13 +1,13 @@
-import { MoveObserverCallback } from "./MoveObserverCallback";
-import { MoveObserverInit } from "./MoveObserverInit";
+import { RectObserverCallback } from "./RectObserverCallback";
+import { RectObserverInit } from "./RectObserverInit";
 
-export class MoveObserver {
+export class RectObserver {
   root: Element;
   intersectionObserver?: IntersectionObserver;
 
   constructor(
-    public callback: MoveObserverCallback,
-    public options: MoveObserverInit
+    public callback: RectObserverCallback,
+    public options: RectObserverInit
   ) {
     this.root = options.root;
   }
