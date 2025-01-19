@@ -81,6 +81,7 @@ export class MoveObserver {
 
   unobserve(target: Element) {
     throw new Error("Not implemented");
+    console.log(target);
   }
 
   disconnect() {
