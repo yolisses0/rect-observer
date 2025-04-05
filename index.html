@@ -6,7 +6,9 @@
     <title>RectObserver</title>
   </head>
   <body>
+    <script type="module" src="/src/main.ts"></script>
     <div
+      id="root"
       class="border"
       style="background-color: #0000ff88; width: 40rem; height: 20rem"
     >
@@ -22,6 +24,7 @@
           Just to take some horizontal space
         </div>
         <div
+          id="target"
           class="resizable border"
           style="
             width: 8rem;
@@ -34,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div>Number of callback calls: <span></span></div>
+    <div id="textDisplay"></div>
   </body>
 </html>
 
