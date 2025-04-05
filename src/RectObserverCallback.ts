@@ -1,7 +1,7 @@
 import { RectObserver } from "./RectObserver";
-import { RectObserverEntry } from "./RectObserverEntry";
 
 export type RectObserverCallback = (
-  entries: RectObserverEntry[],
+  target: Element,
+  root: Element,
   observer: RectObserver
 ) => void;

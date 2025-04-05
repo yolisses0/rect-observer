@@ -1,24 +1,24 @@
-import { setupCounter } from "./counter.ts";
+import { RectObserver } from "./RectObserver.ts";
+import { RectObserverCallback } from "./RectObserverCallback.ts";
 import "./style.css";
-import typescriptLogo from "./typescript.svg";
-import viteLogo from "/vite.svg";
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`;
+const root = document.querySelector<HTMLDivElement>("#root")!;
+const target = document.querySelector<HTMLDivElement>("#target")!;
+const textDisplay = document.querySelector<HTMLDivElement>("#textDisplay")!;
 
-setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+let counter = 0;
+const callback: RectObserverCallback = (target, root, observer) => {
+  counter++;
+  textDisplay.innerHTML = `Callback count: ${counter}`;
+  textDisplay.innerHTML += `<br>Target: ${JSON.stringify(
+    target.getBoundingClientRect()
+  )}`;
+  textDisplay.innerHTML += `<br>Root: ${JSON.stringify(
+    root.getBoundingClientRect()
+  )}`;
+};
+
+const rectObserver = new RectObserver(callback, { root: root, target: target });
+
+// If required disconnect the observer
+// rectObserver.disconnect();

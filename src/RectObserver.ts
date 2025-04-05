@@ -3,6 +3,7 @@ import { RectObserverInit } from "./RectObserverInit";
 
 export class RectObserver {
   root: Element;
+  target: Element;
   intersectionObserver?: IntersectionObserver;
 
   constructor(
@@ -10,6 +11,13 @@ export class RectObserver {
     public options: RectObserverInit
   ) {
     this.root = options.root;
+    this.target = options.target;
+
+    this.intersectionObserver = this.createIntersectionObserver(
+      this.target,
+      this.root
+    );
+    this.intersectionObserver.observe(this.target);
   }
 
   getRootMargin(target: Element, root: Element) {
@@ -57,7 +65,7 @@ export class RectObserver {
           this.intersectionObserver.observe(target);
         }
 
-        this.callback([], this);
+        this.callback(target, root, this);
       },
       {
         root: root,
@@ -65,23 +73,6 @@ export class RectObserver {
         rootMargin: this.getRootMargin(target, root),
       }
     );
-  }
-
-  observe(target: Element) {
-    if (this.intersectionObserver) {
-      throw new Error("Observe is still not implemented for multiple targets");
-    }
-
-    this.intersectionObserver = this.createIntersectionObserver(
-      target,
-      this.root
-    );
-    this.intersectionObserver.observe(target);
-  }
-
-  unobserve(target: Element) {
-    throw new Error("Not implemented");
-    console.log(target);
   }
 
   disconnect() {
