@@ -1,13 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>RectObserver</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div
+      class="border"
+      style="background-color: #0000ff88; width: 40rem; height: 20rem"
+    >
+      Root
+      <div
+        class="resizable border root"
+        style="resize: vertical; align-self: center"
+      >
+        Just to take some vertical space
+      </div>
+      <div style="display: flex">
+        <div class="resizable border" style="resize: horizontal">
+          Just to take some horizontal space
+        </div>
+        <div
+          class="resizable border"
+          style="
+            width: 8rem;
+            height: 8rem;
+            background-color: #ff000088;
+            resize: both;
+          "
+        >
+          Target
+        </div>
+      </div>
+    </div>
+    <div>Number of callback calls: <span></span></div>
   </body>
 </html>
+
+<style>
+  .resizable {
+    background-color: #00ff0088;
+    resize: both;
+    overflow: auto;
+  }
+
+  .border {
+    border: 1px solid #000;
+  }
+</style>
