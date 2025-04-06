@@ -1,3 +1,4 @@
+import { configureSlider } from "./configureSlider.ts";
 import { RectObserver } from "./RectObserver.ts";
 import { RectObserverCallback } from "./RectObserverCallback.ts";
 import "./style.css";
@@ -6,10 +7,13 @@ const root = document.querySelector<HTMLDivElement>("#root")!;
 const target = document.querySelector<HTMLDivElement>("#target")!;
 const textDisplay = document.querySelector<HTMLDivElement>("#textDisplay")!;
 
-// configureSlider(target);
+console.log(root.getBoundingClientRect());
+
+configureSlider(target, root);
 
 let counter = 0;
-const callback: RectObserverCallback = (target, root, observer) => {
+const callback: RectObserverCallback = () => {
+  console.log(target.getBoundingClientRect());
   counter++;
   textDisplay.innerHTML = `Callback count: ${counter}`;
   textDisplay.innerHTML += `<br>Target: ${JSON.stringify(
@@ -20,7 +24,7 @@ const callback: RectObserverCallback = (target, root, observer) => {
   )}`;
 };
 
-const rectObserver = new RectObserver(callback, { root: root, target: target });
+const rectObserver = new RectObserver(target, root, () => {});
 
 // If required disconnect the observer
 // rectObserver.disconnect();
