@@ -1,22 +1,25 @@
-export function configureSlider(slider: HTMLElement) {
+export function configureSlider(target: HTMLElement, root: HTMLElement) {
   let offset = 0;
 
   function beginSliding(e: PointerEvent) {
-    slider.onpointermove = slide;
-    slider.setPointerCapture(e.pointerId);
-    offset = e.clientX - slider.getBoundingClientRect().left;
+    target.onpointermove = slide;
+    target.setPointerCapture(e.pointerId);
+    offset =
+      e.clientX -
+      target.getBoundingClientRect().left +
+      root.getBoundingClientRect().left;
   }
 
   function stopSliding(e: PointerEvent) {
-    slider.onpointermove = null;
-    slider.releasePointerCapture(e.pointerId);
+    target.onpointermove = null;
+    target.releasePointerCapture(e.pointerId);
   }
 
   function slide(e: PointerEvent) {
     const position = e.clientX - offset;
-    slider.style.left = position + "px";
+    target.style.left = position + "px";
   }
 
-  slider.onpointerdown = beginSliding;
-  slider.onpointerup = stopSliding;
+  target.onpointerdown = beginSliding;
+  target.onpointerup = stopSliding;
 }

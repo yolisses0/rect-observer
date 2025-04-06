@@ -7,9 +7,7 @@ const root = document.querySelector<HTMLDivElement>("#root")!;
 const target = document.querySelector<HTMLDivElement>("#target")!;
 const textDisplay = document.querySelector<HTMLDivElement>("#textDisplay")!;
 
-console.log(root.getBoundingClientRect());
-
-configureSlider(target);
+configureSlider(target, root);
 
 let counter = 0;
 const callback: RectObserverCallback = () => {
