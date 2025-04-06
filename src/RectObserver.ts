@@ -10,6 +10,8 @@ export class RectObserver {
     public root: HTMLElement
   ) {
     this.resizeObserver = new ResizeObserver(() => {
+      // this.callback is called in the intersection observer callback, so no
+      // need to call it here
       this.updateIntersectionObserver();
     });
     this.resizeObserver.observe(target);
