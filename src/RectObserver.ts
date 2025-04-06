@@ -1,6 +1,7 @@
 import { RectObserverCallback } from "./RectObserverCallback";
 
 export class RectObserver {
+  resizeObserver: ResizeObserver;
   intersectionObserver?: IntersectionObserver;
 
   constructor(
@@ -8,6 +9,11 @@ export class RectObserver {
     public target: HTMLElement,
     public root: HTMLElement
   ) {
+    this.resizeObserver = new ResizeObserver(() => {
+      this.updateIntersectionObserver();
+    });
+    this.resizeObserver.observe(target);
+
     this.updateIntersectionObserver();
   }
 
@@ -63,6 +69,7 @@ export class RectObserver {
   }
 
   updateIntersectionObserver() {
+    this.intersectionObserver?.disconnect();
     this.intersectionObserver = this.createIntersectionObserver(
       this.target,
       this.root
