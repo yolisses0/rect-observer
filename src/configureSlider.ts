@@ -14,7 +14,7 @@ export function configureSlider(slider: HTMLElement) {
 
   function slide(e: PointerEvent) {
     const position = e.clientX - offset;
-    slider.style.transform = `translate(${position}px)`;
+    slider.style.left = position + "px";
   }
 
   slider.onpointerdown = beginSliding;
