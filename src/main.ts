@@ -6,6 +6,8 @@ const root = document.querySelector<HTMLDivElement>("#root")!;
 const target = document.querySelector<HTMLDivElement>("#target")!;
 const textDisplay = document.querySelector<HTMLDivElement>("#textDisplay")!;
 
+// configureSlider(target);
+
 let counter = 0;
 const callback: RectObserverCallback = (target, root, observer) => {
   counter++;

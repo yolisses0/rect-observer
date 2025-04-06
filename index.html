@@ -7,34 +7,10 @@
   </head>
   <body>
     <script type="module" src="/src/main.ts"></script>
-    <div
-      id="root"
-      class="border"
-      style="background-color: #0000ff88; width: 40rem; height: 20rem"
-    >
-      Root
-      <div
-        class="resizable border root"
-        style="resize: vertical; align-self: center"
-      >
-        Just to take some vertical space
-      </div>
-      <div style="display: flex">
-        <div class="resizable border" style="resize: horizontal">
-          Just to take some horizontal space
-        </div>
-        <div
-          id="target"
-          class="resizable border"
-          style="
-            width: 8rem;
-            height: 8rem;
-            background-color: #ff000088;
-            resize: both;
-          "
-        >
-          Target
-        </div>
+    <div id="root" class="border">
+      <div id="target" class="resizable border">
+        Target
+        <div id="slider">move</div>
       </div>
     </div>
     <div id="textDisplay"></div>
@@ -42,6 +18,26 @@
 </html>
 
 <style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    width: 40rem;
+    /* height: 20rem; */
+    background-color: #0000ff88;
+  }
+
+  #target {
+    width: 8rem;
+    height: 8rem;
+    resize: both;
+    overflow: hidden;
+    background-color: #ff000088;
+  }
+
   .resizable {
     background-color: #00ff0088;
     resize: both;
@@ -49,6 +45,6 @@
   }
 
   .border {
-    border: 1px solid #000;
+    outline: 1px solid #000;
   }
 </style>
