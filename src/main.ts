@@ -23,8 +23,7 @@ const callback: RectObserverCallback = () => {
   )}`;
 };
 
-const rectObserver = new RectObserver(callback, { root });
-rectObserver.observe(target);
+const rectObserver = new RectObserver(callback, target, root);
 
 // If required disconnect the observer
 // rectObserver.disconnect();

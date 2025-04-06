@@ -1,15 +1,14 @@
 import { RectObserverCallback } from "./RectObserverCallback";
-import { RectObserverInit } from "./RectObserverInit";
 
 export class RectObserver {
-  root: Element;
   intersectionObserver?: IntersectionObserver;
 
   constructor(
     public callback: RectObserverCallback,
-    public options: RectObserverInit
+    public target: HTMLElement,
+    public root: HTMLElement
   ) {
-    this.root = options.root;
+    this.updateIntersectionObserver();
   }
 
   getRootMargin(target: Element, root: Element) {
@@ -50,11 +49,7 @@ export class RectObserver {
 
         if (!entry.isIntersecting) {
           observer.disconnect();
-          this.intersectionObserver = this.createIntersectionObserver(
-            target,
-            root
-          );
-          this.intersectionObserver.observe(target);
+          this.updateIntersectionObserver();
         }
 
         this.callback();
@@ -67,21 +62,12 @@ export class RectObserver {
     );
   }
 
-  observe(target: Element) {
-    if (this.intersectionObserver) {
-      throw new Error("Observe is still not implemented for multiple targets");
-    }
-
+  updateIntersectionObserver() {
     this.intersectionObserver = this.createIntersectionObserver(
-      target,
+      this.target,
       this.root
     );
-    this.intersectionObserver.observe(target);
-  }
-
-  unobserve(target: Element) {
-    throw new Error("Not implemented");
-    console.log(target);
+    this.intersectionObserver.observe(this.target);
   }
 
   disconnect() {
