@@ -5,9 +5,10 @@ import "./style.css";
 
 const root = document.querySelector<HTMLDivElement>("#root")!;
 const target = document.querySelector<HTMLDivElement>("#target")!;
+const handler = document.querySelector<HTMLDivElement>("#handler")!;
 const textDisplay = document.querySelector<HTMLDivElement>("#textDisplay")!;
 
-configureSlider(target, root);
+configureSlider(target, root, handler);
 
 let counter = 0;
 const callback: RectObserverCallback = () => {
