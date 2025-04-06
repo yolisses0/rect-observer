@@ -9,7 +9,7 @@ const textDisplay = document.querySelector<HTMLDivElement>("#textDisplay")!;
 
 console.log(root.getBoundingClientRect());
 
-configureSlider(target, root);
+configureSlider(target);
 
 let counter = 0;
 const callback: RectObserverCallback = () => {
@@ -24,7 +24,8 @@ const callback: RectObserverCallback = () => {
   )}`;
 };
 
-const rectObserver = new RectObserver(target, root, () => {});
+const rectObserver = new RectObserver(callback, { root });
+rectObserver.observe(target);
 
 // If required disconnect the observer
 // rectObserver.disconnect();
