@@ -1,13 +1,13 @@
 import { configureSlider } from "./configureSlider.ts";
 import { RectObserver } from "./RectObserver.ts";
 import { RectObserverCallback } from "./RectObserverCallback.ts";
-import "./style.css";
 
 const root = document.querySelector<HTMLDivElement>("#root")!;
 const target = document.querySelector<HTMLDivElement>("#target")!;
 const handler = document.querySelector<HTMLDivElement>("#handler")!;
 const textDisplay = document.querySelector<HTMLDivElement>("#textDisplay")!;
 
+// Just for testing, the cause of the element's rect doesn't matter.
 configureSlider(target, root, handler);
 
 let counter = 0;
