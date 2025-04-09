@@ -16,6 +16,10 @@
     "vite": "^6.0.5"
   },
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yolisses0/rect-observer.git"
+  },
   "types": "dist/index.d.ts",
   "files": [
     "dist"
