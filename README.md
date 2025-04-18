@@ -1,15 +1,13 @@
 # RectObserver
 
-Executes a callback every time the bounding rect of the element changes. It uses IntersectionObserver under the hood, so there's no check loop.
+Executes a callback whenever the bounding rectangle of an element changes. It uses `IntersectionObserver` under the hood, eliminating the need for a polling loop.
 
 ## Example
-
-![Showcase of RectObserver in action](docs/showcase.gif)
 
 ```ts
 // Full example in src/main.ts
 
-// Just for testing, the cause of the element's rect change doesn't matter.
+// For testing purposes; the cause of the element's rectangle change is irrelevant.
 configureSlider(target, root, handler);
 
 let counter = 0;
@@ -26,10 +24,15 @@ const callback: RectObserverCallback = () => {
 
 const rectObserver = new RectObserver(callback, target, root);
 
-// If required disconnect the observer
+// If needed, disconnect the observer
 // rectObserver.disconnect();
 ```
 
+## Known Limitations
+
+- It may not work well if the target causes the root to become scrollable. In such cases, consider making the root non-scrollable and wrapping it in a scrollable container.
+- The callback may be triggered more times than the target's rectangle actually changes.
+
 ## Contributing
 
-If you want to contribute to the library, feel free to contact me via email: yolisses0 at gmail dot com.
+To contribute to the library, please contact me via email: yolisses 0 at gmail dot com.

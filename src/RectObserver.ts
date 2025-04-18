@@ -1,7 +1,9 @@
 import { RectObserverCallback } from "./RectObserverCallback";
 
+// Both target and root must have size observed
 export class RectObserver {
-  resizeObserver: ResizeObserver;
+  rootResizeObserver: ResizeObserver;
+  targetResizeObserver: ResizeObserver;
   intersectionObserver?: IntersectionObserver;
 
   constructor(
@@ -9,12 +11,17 @@ export class RectObserver {
     public target: HTMLElement,
     public root: HTMLElement
   ) {
-    this.resizeObserver = new ResizeObserver(() => {
-      // this.callback is called in the intersection observer callback, so no
-      // need to call it here
+    // this.callback is not called in the resize observers since
+    // this.updateIntersectionObserver calls this.callback
+    this.targetResizeObserver = new ResizeObserver(() => {
       this.updateIntersectionObserver();
     });
-    this.resizeObserver.observe(target);
+    this.targetResizeObserver.observe(target);
+
+    this.rootResizeObserver = new ResizeObserver(() => {
+      this.updateIntersectionObserver();
+    });
+    this.rootResizeObserver.observe(root);
 
     this.updateIntersectionObserver();
   }
@@ -80,7 +87,8 @@ export class RectObserver {
   }
 
   disconnect() {
-    this.resizeObserver.disconnect();
+    this.rootResizeObserver.disconnect();
+    this.targetResizeObserver.disconnect();
     this.intersectionObserver?.disconnect();
   }
 }
