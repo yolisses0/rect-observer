@@ -47,6 +47,7 @@ export class RectObserver {
     /* top | right | bottom | left */
     const rootMargin =
       [topMargin, rightMargin, bottomMargin, leftMargin].join("px ") + "px";
+    console.log(rootMargin);
     return rootMargin;
   }
 
@@ -80,6 +81,7 @@ export class RectObserver {
   }
 
   disconnect() {
+    this.resizeObserver.disconnect();
     this.intersectionObserver?.disconnect();
   }
 }
