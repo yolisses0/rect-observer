@@ -47,7 +47,6 @@ export class RectObserver {
     /* top | right | bottom | left */
     const rootMargin =
       [topMargin, rightMargin, bottomMargin, leftMargin].join("px ") + "px";
-    console.log(rootMargin);
     return rootMargin;
   }
 
