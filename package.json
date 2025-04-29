@@ -1,13 +1,5 @@
 {
-  "name": "rect-observer",
-  "version": "0.1.0",
-  "type": "module",
-  "license": "MIT",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsup",
-    "preview": "vite preview"
-  },
+  "description": "Executes a callback whenever the bounding rectangle of an element changes. It uses `IntersectionObserver` under the hood, eliminating the need for a polling loop.",
   "devDependencies": {
     "@playwright/test": "^1.51.1",
     "@types/node": "^22.14.0",
@@ -15,13 +7,36 @@
     "typescript": "~5.6.2",
     "vite": "^6.0.5"
   },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "browser",
+    "change-detection",
+    "intersection-observer",
+    "IntersectionObserver API",
+    "IntersectionObserver",
+    "rectangle",
+    "RectObserver",
+    "resize-observer",
+    "ResizeObserver API",
+    "ResizeObserver",
+    "responsive-layout",
+    "UI"
+  ],
+  "license": "MIT",
   "main": "dist/index.js",
+  "name": "rect-observer",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yolisses0/rect-observer.git"
   },
+  "scripts": {
+    "build": "tsup",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "type": "module",
   "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ]
+  "version": "0.1.0"
 }
