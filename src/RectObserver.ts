@@ -28,7 +28,7 @@ export class RectObserver {
     this.updateIntersectionObserver();
   }
 
-  getRootMargin(target: Element, root: Element) {
+  getRootMargin = (target: Element, root: Element) => {
     const contentRect = target.getBoundingClientRect();
     const containerRect = root.getBoundingClientRect();
 
@@ -57,9 +57,9 @@ export class RectObserver {
     const rootMargin =
       [topMargin, rightMargin, bottomMargin, leftMargin].join("px ") + "px";
     return rootMargin;
-  }
+  };
 
-  createIntersectionObserver(target: Element, root: Element) {
+  createIntersectionObserver = (target: Element, root: Element) => {
     return new IntersectionObserver(
       (entries, observer) => {
         const [entry] = entries;
@@ -83,20 +83,20 @@ export class RectObserver {
         rootMargin: this.getRootMargin(target, root),
       }
     );
-  }
+  };
 
-  updateIntersectionObserver() {
+  updateIntersectionObserver = () => {
     this.intersectionObserver?.disconnect();
     this.intersectionObserver = this.createIntersectionObserver(
       this.target,
       this.root
     );
     this.intersectionObserver.observe(this.target);
-  }
+  };
 
-  disconnect() {
+  disconnect = () => {
     this.rootResizeObserver.disconnect();
     this.targetResizeObserver.disconnect();
     this.intersectionObserver?.disconnect();
-  }
+  };
 }
