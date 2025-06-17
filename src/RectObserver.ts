@@ -37,9 +37,9 @@ export class RectObserver {
     let rightMargin = contentRect.right - containerRect.right;
     let bottomMargin = contentRect.bottom - containerRect.bottom;
 
-    // This part ensures that the intersection rect is big enough in
-    // fractional displays, where the positions are given by floats, which
-    // have precision errors
+    // This part ensures that the intersection rect is big enough in fractional
+    // displays, where the positions are given by floats, which have precision
+    // errors
     if (!Number.isInteger(topMargin)) {
       topMargin++;
     }
