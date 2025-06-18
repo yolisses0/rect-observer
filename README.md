@@ -4,6 +4,8 @@ Executes a callback whenever the bounding rectangle of an element changes. It us
 
 ## Example
 
+![data being updated when a rectangle moves](docs/showcase.gif)
+
 ```ts
 // See full example in src/main.ts
 
