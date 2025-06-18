@@ -3,7 +3,8 @@ import { RectObserverCallback } from "./RectObserverCallback";
 
 // Both target and root must have size observed
 export class RectObserver {
-  lastDomRect?: DOMRect;
+  lastRootDomRect?: DOMRect;
+  lastTargetDomRect?: DOMRect;
   rootResizeObserver: ResizeObserver;
   targetResizeObserver: ResizeObserver;
   intersectionObserver?: IntersectionObserver;
@@ -63,17 +64,21 @@ export class RectObserver {
     return new IntersectionObserver(
       (entries, observer) => {
         const [entry] = entries;
-        const { boundingClientRect } = entry;
+        const targetBoundingClientRect = entry.boundingClientRect;
+        const rootBoundingClientRect = root.getBoundingClientRect();
         if (
-          !this.lastDomRect ||
-          !getAreDomRectsEqual(this.lastDomRect, boundingClientRect)
+          !this.lastRootDomRect ||
+          !this.lastTargetDomRect ||
+          !getAreDomRectsEqual(this.lastRootDomRect, rootBoundingClientRect) ||
+          !getAreDomRectsEqual(this.lastTargetDomRect, targetBoundingClientRect)
         ) {
           if (!entry.isIntersecting) {
             observer.disconnect();
             this.updateIntersectionObserver();
           }
 
-          this.lastDomRect = boundingClientRect;
+          this.lastRootDomRect = rootBoundingClientRect;
+          this.lastTargetDomRect = targetBoundingClientRect;
           this.callback();
         }
       },
